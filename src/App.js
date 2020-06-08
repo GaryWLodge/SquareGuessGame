@@ -9,12 +9,13 @@ class App extends PureComponent {
 
   state = { 
     isFlipped: Array(4).fill(false),
-    shuffledCard: App.duplicateCard().sort(() => Math.random()),
-    cardNum: Math.floor(Math.random() * 4 + 1)
+    shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
+    correctCard: Math.floor(Math.random() * 4 + 1),
+    correctChoice: false
   };
 
   static duplicateCard = () => {
-    return [0,1].reduce((preValue, current, index, array) => {
+    return [1,2].reduce((preValue, current) => {
       return preValue.concat([current, current])
     },[]);
   };
@@ -22,18 +23,10 @@ class App extends PureComponent {
   handleClick = event => {
     event.preventDefault();
     const cardId = event.target.id;
-    const newFlipps = this.state.isFlipped.slice();
-    this.setState({
-        prevSelectedCard: this.state.shuffledCard[cardId],
-        prevCardId: cardId
-    });
+    const selectedCard = this.state.isFlipped.slice();
 
-    if (newFlipps[cardId] === false) {
-      newFlipps[cardId] = !newFlipps[cardId];
-      this.setState(prevState => ({ 
-        isFlipped: newFlipps,
-        clickCount: this.state.clickCount + 1
-      }));
+    if (selectedCard[cardId] === this.state.correctCard) {
+       this.setState.correctChoice = true
 
       if (this.state.clickCount === 2) {
         this.setState({ clickCount: 1 });
@@ -42,44 +35,37 @@ class App extends PureComponent {
         const previousCard = this.state.prevSelectedCard;
 
         this.isCardCorrect(previousCard, newCard, prevCardId, cardId);
+        console.log(this.state)
       }
     }
   };
 
-  isCardMatch = (card1, card2, card1Id, card2Id) => {
-    if (card1 === card2) {
-      const hideCard = this.state.shuffledCard.slice();
-      hideCard[card1Id] = -1;
-      hideCard[card2Id] = -1;
-      setTimeout(() => {
-        this.setState(prevState => ({
-          shuffledCard: hideCard
-        }))
-      }, 1000);
-    } else {
-      const flipBack = this.state.isFlipped.slice();
-      flipBack[card1Id] = false;
-      flipBack[card2Id] = false;
-      setTimeout(() => {
-        this.setState(prevState => ({ isFlipped: flipBack }));
-      }, 1000);
-    }
-  };
+  // isCardMatch = (card1, card2, card1Id, card2Id) => {
+  //   if (card1 === card2) {
+  //     const hideCard = this.state.shuffledCard.slice();
+  //     hideCard[card1Id] = -1;
+  //     hideCard[card2Id] = -1;
+  //     setTimeout(() => {
+  //       this.setState(prevState => ({
+  //         shuffledCard: hideCard
+  //       }))
+  //     }, 1000);
+  //   } else {
+  //     const flipBack = this.state.isFlipped.slice();
+  //     flipBack[card1Id] = false;
+  //     flipBack[card2Id] = false;
+  //     setTimeout(() => {
+  //       this.setState(prevState => ({ isFlipped: flipBack }));
+  //     }, 1000);
+  //   }
+  // };
 
   isCardCorrect = (cardSelected, correctCard) => {
     if (cardSelected === correctCard) {
       const displayCorrect = this.state.shuffledCard.slice();
-      setTimeout(() => {
-        this.setState(prevState => ({
-          shuffledCard: hideCard
-        }))
-      }, 1000);
+      
     } else {
-      const displayWrong = this.state.isFlipped.slice();
-
-      setTimeout(() => {
-        this.setState(prevState => ({ isFlipped: flipBack }));
-      }, 1000);
+      const displayWrong = this.state.correctCard.slice();
     }
   };
 
@@ -87,9 +73,8 @@ class App extends PureComponent {
     this.setState({
       isFlipped: Array(4).fill(false),
       shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
-      clickCount: 1,
-      prevSelectedCard: -1,
-      prevCardId: -1
+      correctCard: Math.floor(Math.random() * 4 + 1),
+      correctChoice: false
     });
   };
 
