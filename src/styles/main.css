@@ -60,8 +60,12 @@ body {
     font-size: 15px;
   }
   
-  .hide-card {
-    visibility: hidden;
+  .correct-card {
+    background-color: green;
+  }
+
+  .wrong-card {
+    background-color: red;
   }
   
   .card-front {
@@ -70,6 +74,7 @@ body {
   }
   
   .card-back {
+    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     font-weight: bold;
   }
   
