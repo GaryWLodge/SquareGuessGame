@@ -2,15 +2,15 @@ import React from 'react';
 import ReactCardFlip from "react-card-flip";
 
 const Card = ({ id, isFlipped, handleClick, correctCard }) => (
-  <ReactCardFlip isFlipped={isFlipped} flipSpeedBackToFront={1} flipSpeedFrontToBack={1} >
-    <button id={id} className={`card card-front ${correctCard === id ? "correct-card" : "wrong-card"}`} 
+  <ReactCardFlip isFlipped={isFlipped} flipSpeedBackToFront={0} flipSpeedFrontToBack={1} >
+    <button id={id} className={`card card-front `} 
     onClick={handleClick} key="front">
-      {id}
+      {id + 1}
     </button>
 
     <button id={id} className={`card card-back ${correctCard === id ? "correct-card" : "wrong-card"}`} 
     onClick={handleClick} key="back">
-      { correctCard }
+      { correctCard + 1}
     </button>
   </ReactCardFlip>
 );

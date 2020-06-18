@@ -1,9 +1,10 @@
 import React from 'react';
 
-const GameOver = ({ restartGame }) => (
+const GameOver = ({ restartGame , choiceArray}) => (
   <div className="justify-center">
     <h1>Game Over!</h1>
-    <h3>If you enjoyed playing this game, follow me @iamkenec for more...</h3>
+<h2>You got {choiceArray}</h2>
+    <h3>Click Restart Game to play Again!!!</h3>
     <button className="restart-button" onClick={restartGame}>Restart Game</button>
   </div>
 );
