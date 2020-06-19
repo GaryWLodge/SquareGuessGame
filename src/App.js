@@ -9,7 +9,7 @@ class App extends PureComponent {
   state = { 
     isFlipped: Array(4).fill(false),
     cardArray: App.cardArray().sort(),
-    correctCard: Math.floor(Math.random() * (3 - 0) + 0),
+    correctCard: Math.floor(Math.random() * (4 - 0) + 0),
     correctChoice: false,
     choiceArray: Array(24).fill(false),
     arrayCount: 0,
@@ -26,7 +26,7 @@ class App extends PureComponent {
     if (this.state.prePickMode === true) {
       setTimeout(() => {
         this.setState({
-          correctCard: Math.floor(Math.random() * (3 - 0) + 0)
+          correctCard: Math.floor(Math.random() * (4 - 0) + 0)
         })
       }, 200);
     }
@@ -55,7 +55,6 @@ class App extends PureComponent {
         })};
       }
     }, 200)
-
   };
 
 
@@ -63,7 +62,7 @@ class App extends PureComponent {
     this.setState({
       isFlipped: Array(4).fill(false),
     cardArray: App.cardArray().sort(),
-    correctCard: Math.floor(Math.random() * (3 - 0) + 0),
+    correctCard: Math.floor(Math.random() * (4 - 0) + 0),
     correctChoice: false,
     choiceArray: Array(24).fill(false),
     arrayCount: 0,
@@ -72,12 +71,23 @@ class App extends PureComponent {
   };
 
   skip = () => {
-    this.setState({
-      isFlipped: Array(4).fill(false),
-    cardArray: App.cardArray().sort(),
-    correctCard: Math.floor(Math.random() * (3 - 0) + 0),
-    correctChoice: false
-    })
+    
+    if (this.state.prePickMode === true) {
+      const arrayCount = this.state.arrayCount;
+      this.setState({
+        isFlipped: Array(4).fill(false),
+      cardArray: App.cardArray().sort(),
+      correctCard: null,
+      correctChoice: false,
+      })
+    }else {
+      this.setState({
+        isFlipped: Array(4).fill(false),
+      cardArray: App.cardArray().sort(),
+      correctCard: Math.floor(Math.random() * (4 - 0) + 0),
+      correctChoice: false
+      })
+    }
   }
 
   next = () => {
@@ -96,13 +106,11 @@ class App extends PureComponent {
       this.setState({
         isFlipped: Array(4).fill(false),
       cardArray: App.cardArray().sort(),
-      correctCard: Math.floor(Math.random() * (3 - 0) + 0),
+      correctCard: Math.floor(Math.random() * (4 - 0) + 0),
       correctChoice: false,
       arrayCount: arrayCount + 1
       })
     }
-
-
   }
 
   prePickMode = () => {
@@ -116,14 +124,18 @@ class App extends PureComponent {
     return this.state.arrayCount === 23};
 
   render() {
+    const correctCount = this.state.choiceArray.filter(count => count === true).length;
+    const wrongCount = this.state.choiceArray.filter(count => count === false).length;
     return (
      <div>
        <Header restartGame={this.restartGame}
-               prePickMode={this.prePickMode} />
+               prePickMode={this.prePickMode}
+               prePickTrue={this.state.prePickMode} />
        { this.isGameOver() ? 
               <GameOver 
                 restartGame={this.restartGame} 
-                choiceArray={this.state.choiceArray}
+                correctCount={correctCount}
+                wrongCount={wrongCount}
               /> :
        <div className="grid-container">
           {
@@ -137,16 +149,16 @@ class App extends PureComponent {
               />
             )
           }
-          <div className="skip">
-            <button onClick={this.skip}>
-            Skip
-            </button>
-          </div>
-          <div>
-            {this.state.arrayCount + 1} of 24
-          </div>
         </div>
        }
+        <div skip-wrapper>
+            <button className="skip grid-container" onClick={this.skip}>
+            Skip
+            </button>
+        </div>
+       <div>
+            {this.state.arrayCount + 1} of 24
+      </div>
      </div>
     );
   }

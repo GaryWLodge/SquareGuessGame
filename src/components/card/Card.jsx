@@ -2,7 +2,7 @@ import React from 'react';
 import ReactCardFlip from "react-card-flip";
 
 const Card = ({ id, isFlipped, handleClick, correctCard }) => (
-  <ReactCardFlip isFlipped={isFlipped} flipSpeedBackToFront={0} flipSpeedFrontToBack={1} >
+  <ReactCardFlip isFlipped={isFlipped} flipSpeedBackToFront={0} flipSpeedFrontToBack={1}>
     <button id={id} className={`card card-front `} 
     onClick={handleClick} key="front">
       {id + 1}

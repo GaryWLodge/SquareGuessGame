@@ -4,7 +4,7 @@ body {
   
   .grid-container {
     display: grid;
-    grid-gap: 1px;
+    grid-gap: 8px;
     grid-template-columns: auto auto auto auto;
     padding: 10px 150px 10px 150px;
   }
@@ -45,6 +45,14 @@ body {
     background-color: #5168e9;
     border: 0;
   }
+
+  .pre-pick {
+    width: 15em;
+    height: 3em;
+    color: white;
+    background-color: green;
+    border: 0;
+  }
   
   .game-status-text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -77,7 +85,15 @@ body {
     box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
     font-weight: bold;
   }
-  
-  .react-card-front {
-    position: unset !important;
+
+  .skip {
+    width: 15em;
+    height: 3em;
+    color: white;
+    background-color: #5168e9;
+    border: 0;
+  }
+
+  .skip-wrapper {
+    margin-left: 34em;
   }
