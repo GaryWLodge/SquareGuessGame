@@ -72,8 +72,6 @@ class App extends PureComponent {
   };
 
   skip = () => {
-    
-    if (this.state.prePickMode === true) {
       const arrayCount = this.state.arrayCount;
       this.setState({
         isFlipped: Array(4).fill(false),
@@ -86,7 +84,7 @@ class App extends PureComponent {
         this.skipNext()
         },1000)
     }
-  }
+  
 
   next = () => {
     
