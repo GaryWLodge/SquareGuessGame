@@ -13,7 +13,8 @@ class App extends PureComponent {
     correctChoice: false,
     choiceArray: Array(24).fill(false),
     arrayCount: 0,
-    prePickMode: false
+    prePickMode: false,
+    skip: false
   };
 
   static cardArray = () => {
@@ -77,16 +78,13 @@ class App extends PureComponent {
       this.setState({
         isFlipped: Array(4).fill(false),
       cardArray: App.cardArray().sort(),
-      correctCard: null,
-      correctChoice: false,
-      })
-    }else {
-      this.setState({
-        isFlipped: Array(4).fill(false),
-      cardArray: App.cardArray().sort(),
       correctCard: Math.floor(Math.random() * (4 - 0) + 0),
-      correctChoice: false
+      correctChoice: false,
+      skip: true
       })
+      setTimeout(() => {
+        this.skipNext()
+        },1000)
     }
   }
 
@@ -99,7 +97,8 @@ class App extends PureComponent {
       cardArray: App.cardArray().sort(),
       correctCard: null,
       correctChoice: false,
-      arrayCount: arrayCount + 1
+      arrayCount: arrayCount + 1,
+      skip: false
       })
     }else {
       const arrayCount = this.state.arrayCount;
@@ -108,7 +107,30 @@ class App extends PureComponent {
       cardArray: App.cardArray().sort(),
       correctCard: Math.floor(Math.random() * (4 - 0) + 0),
       correctChoice: false,
-      arrayCount: arrayCount + 1
+      arrayCount: arrayCount + 1,
+      skip: false
+      })
+    }
+  }
+
+  skipNext = () => {
+    if (this.state.prePickMode === true) {
+      const arrayCount = this.state.arrayCount;
+      this.setState({
+        isFlipped: Array(4).fill(false),
+      cardArray: App.cardArray().sort(),
+      correctCard: null,
+      correctChoice: false,
+      skip: false
+      })
+    }else {
+      const arrayCount = this.state.arrayCount;
+      this.setState({
+        isFlipped: Array(4).fill(false),
+      cardArray: App.cardArray().sort(),
+      correctCard: Math.floor(Math.random() * (4 - 0) + 0),
+      correctChoice: false,
+      skip: false
       })
     }
   }
@@ -153,7 +175,7 @@ class App extends PureComponent {
        }
         <div skip-wrapper>
             <button className="skip grid-container" onClick={this.skip}>
-            Skip
+            Skip { this.state.skip === true ? this.state.correctCard + 1 : ""}
             </button>
         </div>
        <div>
