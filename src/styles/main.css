@@ -6,14 +6,8 @@ body {
     display: grid;
     grid-gap: 8px;
     grid-template-columns: auto auto auto auto;
-    padding: 10px 150px 10px 150px;
-    min-width: 43em;
-
-    @media only screen and (min-width : 850px) {
-      display: grid;
-      min-width: 43em;
     }
-  }
+  
   
   .grid-header-container {
     display: grid;
@@ -44,7 +38,7 @@ body {
   }
   
   .restart-button {
-    width: 15em;
+    width: 22em;
     height: 3em;
     color: white;
     background-color: #5168e9;
@@ -52,7 +46,7 @@ body {
   }
 
   .pre-pick {
-    width: 15em;
+    width: 22em;
     height: 3em;
     color: white;
     background-color: green;
@@ -100,12 +94,14 @@ body {
     height: 5em;
     color: white;
     background-color: #5168e9;
-    margin-left: 44.6em;
     justify-content: center;
   }
 
+  .skip-wrapper {
+    text-align: center;
+  }
+
   .count {
-    margin-left: 41em;
     padding-top: 1em;
   }
 

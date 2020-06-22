@@ -171,12 +171,14 @@ class App extends PureComponent {
           }
         </div>
        }
+       <div className="skip-wrapper">
             <button className="skip" onClick={this.skip}>
             Skip { this.state.skip === true ? this.state.correctCard + 1 : ""}
             </button>
 
        <div className="count">
             {this.state.arrayCount + 1} of 24
+      </div>
       </div>
      </div>
     );
