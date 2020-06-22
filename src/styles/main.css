@@ -7,11 +7,16 @@ body {
     grid-gap: 8px;
     grid-template-columns: auto auto auto auto;
     padding: 10px 150px 10px 150px;
+    min-width: 43em;
+
+    @media only screen and (min-width : 850px) {
+      display: grid;
+      min-width: 43em;
+    }
   }
   
   .grid-header-container {
     display: grid;
-    grid-template-columns: auto auto auto;
     background-color: #c9d1f5;
     padding: 10px;
   }
@@ -67,6 +72,10 @@ body {
     color: white;
     font-size: 15px;
   }
+
+  .cards {
+    flex-wrap: wrap;
+  }
   
   .correct-card {
     background-color: green;
@@ -87,13 +96,23 @@ body {
   }
 
   .skip {
-    width: 15em;
-    height: 3em;
+    width: 4em;
+    height: 5em;
     color: white;
     background-color: #5168e9;
-    border: 0;
+    margin-left: 44.6em;
+    justify-content: center;
   }
 
-  .skip-wrapper {
-    margin-left: 34em;
+  .count {
+    margin-left: 41em;
+    padding-top: 1em;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .left {
+    float: left;
   }

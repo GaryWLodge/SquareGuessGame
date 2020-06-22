@@ -157,7 +157,7 @@ class App extends PureComponent {
                 correctCount={correctCount}
                 wrongCount={wrongCount}
               /> :
-       <div className="grid-container">
+       <div className="grid-container cards">
           {
             this.state.cardArray.map((correctCard, index) => 
               <Card
@@ -171,12 +171,11 @@ class App extends PureComponent {
           }
         </div>
        }
-        <div skip-wrapper>
-            <button className="skip grid-container" onClick={this.skip}>
+            <button className="skip" onClick={this.skip}>
             Skip { this.state.skip === true ? this.state.correctCard + 1 : ""}
             </button>
-        </div>
-       <div>
+
+       <div className="count">
             {this.state.arrayCount + 1} of 24
       </div>
      </div>
