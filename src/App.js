@@ -43,7 +43,7 @@ class App extends PureComponent {
       })
       setTimeout(() => {
       this.next()
-      }, 1000)
+      }, 1200)
     };
       
     setTimeout(() => {
@@ -55,7 +55,7 @@ class App extends PureComponent {
           choiceArray: choiceArray
         })};
       }
-    }, 250)
+    }, 400)
   };
 
 
