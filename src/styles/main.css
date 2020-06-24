@@ -38,7 +38,6 @@ body {
   }
   
   .restart-button {
-    width: 22em;
     height: 3em;
     color: white;
     background-color: #5168e9;
@@ -46,7 +45,6 @@ body {
   }
 
   .pre-pick {
-    width: 22em;
     height: 3em;
     color: white;
     background-color: green;
@@ -69,6 +67,7 @@ body {
 
   .cards {
     flex-wrap: wrap;
+    padding-top: 1.5em;
   }
   
   .correct-card {
@@ -99,6 +98,7 @@ body {
 
   .skip-wrapper {
     text-align: center;
+    padding-top: 2em;
   }
 
   .count {

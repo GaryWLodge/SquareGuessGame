@@ -5,7 +5,7 @@ const Header = ({ restartGame, prePickMode, prePickTrue }) => (
     <div className="justify-center game-status-text">
       <button onClick={restartGame} className="restart-button right">Restart Game</button>
       <button onClick={prePickMode} className={`left ${prePickTrue === true ? "pre-pick" : "restart-button"}`}
-      >Pre-Pick-Mode</button>
+      >Pre-Pick-Mode </button>
     </div>
   </div>
 );

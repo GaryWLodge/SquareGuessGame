@@ -24,27 +24,35 @@ class App extends PureComponent {
   };
 
   handleClick = event => {
+    event.preventDefault();
+    const cardId = parseInt(event.target.id); 
+    const newFlipps = this.state.isFlipped.slice();
+    const choiceArray = this.state.choiceArray.slice();
+    const arrayCount = this.state.arrayCount;
     if (this.state.prePickMode === true) {
-      setTimeout(() => {
-        this.setState({
-          correctCard: Math.floor(Math.random() * (4 - 0) + 0)
-        })
-      }, 200);
-    }
-      event.preventDefault();
-      const cardId = parseInt(event.target.id); 
-      const newFlipps = this.state.isFlipped.slice();
-      const choiceArray = this.state.choiceArray.slice();
-      const arrayCount = this.state.arrayCount;
       if (newFlipps[cardId] === false) {
-      newFlipps[cardId] = !newFlipps[cardId];
-      this.setState({ 
-        isFlipped: newFlipps,
-      })
-      setTimeout(() => {
-      this.next()
-      }, 1200)
-    };
+        newFlipps[cardId] = !newFlipps[cardId];
+        setTimeout(() => {
+          this.setState({
+            correctCard: Math.floor(Math.random() * (4 - 0) + 0),
+            isFlipped: newFlipps,
+          })
+        }, 200);
+        setTimeout(() => {
+        this.next()
+        }, 1200)
+      }
+    }else{
+      if (newFlipps[cardId] === false) {
+        newFlipps[cardId] = !newFlipps[cardId];
+        this.setState({ 
+          isFlipped: newFlipps,
+        })
+        setTimeout(() => {
+        this.next()
+        }, 1200)
+    }
+  };
       
     setTimeout(() => {
       if (cardId === this.state.correctCard) {
@@ -55,7 +63,7 @@ class App extends PureComponent {
           choiceArray: choiceArray
         })};
       }
-    }, 400)
+    }, 200)
   };
 
 
@@ -157,6 +165,7 @@ class App extends PureComponent {
                 correctCount={correctCount}
                 wrongCount={wrongCount}
               /> :
+              <div>
        <div className="grid-container cards">
           {
             this.state.cardArray.map((correctCard, index) => 
@@ -170,16 +179,19 @@ class App extends PureComponent {
             )
           }
         </div>
-       }
+       
        <div className="skip-wrapper">
             <button className="skip" onClick={this.skip}>
-            Skip { this.state.skip === true ? this.state.correctCard + 1 : ""}
+            Skip
             </button>
+            <h3>{ this.state.skip === true ? this.state.correctCard + 1 : ""}</h3>
 
        <div className="count">
             {this.state.arrayCount + 1} of 24
       </div>
       </div>
+      </div>
+      }
      </div>
     );
   }
