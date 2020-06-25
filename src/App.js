@@ -35,22 +35,26 @@ class App extends PureComponent {
         setTimeout(() => {
           this.setState({
             correctCard: Math.floor(Math.random() * (4 - 0) + 0),
-            isFlipped: newFlipps,
           })
         }, 200);
         setTimeout(() => {
+          this.setState({
+            isFlipped: newFlipps
+          })
+        }, 300);
+        setTimeout(() => {
         this.next()
-        }, 1200)
+        }, 1500)
       }
     }else{
       if (newFlipps[cardId] === false) {
         newFlipps[cardId] = !newFlipps[cardId];
         this.setState({ 
-          isFlipped: newFlipps,
+          isFlipped: newFlipps
         })
         setTimeout(() => {
         this.next()
-        }, 1200)
+        }, 1500)
     }
   };
       
@@ -63,7 +67,7 @@ class App extends PureComponent {
           choiceArray: choiceArray
         })};
       }
-    }, 200)
+    }, 205)
   };
 
 
